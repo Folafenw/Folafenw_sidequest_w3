@@ -18,11 +18,14 @@ function drawLose() {
 
   // Main message
   textSize(40);
-  text("You Lose!", width / 2, 300);
+  text("You Lose!", width / 2, 250);
 
   // Instruction text
-  textSize(20);
-  text("Click or press R to return to Start.", width / 2, 360);
+  textSize(22);
+   text("You chased the bird. It pecks you to death. You die.", width / 2, 300);
+
+textSize(18);
+  text("Click or press R to return to the Start.", width / 2, 360);
 }
 
 // ------------------------------

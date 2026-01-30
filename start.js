@@ -71,7 +71,7 @@ function startMousePressed() {
   }
   // If HOME is clicked, go to the home screen
   else if (isHover(homeBtn)) {
-    currentScreen = "lose";
+    currentScreen = "home";
   }
 }
 
@@ -87,7 +87,7 @@ function startKeyPressed() {
   }
 
   if (key === "h" || key === "H") {
-    currentScreen = "lose";
+    currentScreen = "home";
   }
 }
 

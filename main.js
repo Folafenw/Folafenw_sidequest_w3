@@ -21,7 +21,7 @@
 //
 // We store the “name” of the current screen as a string.
 // Only one screen should be active at a time.
-let currentScreen = "start"; // "start" | "instr" | "game" | "win" | "lose"
+let currentScreen = "start"; // "start" | "instr" | "game" | "win" | "lose" | "home"
 
 // ------------------------------
 // setup() runs ONCE at the beginning
@@ -47,18 +47,14 @@ function draw() {
   //   game.js          → drawGame()
   //   win.js           → drawWin()
   //   lose.js          → drawLose()
+  //   home.js          → drawHome()
 
   if (currentScreen === "start") drawStart();
   else if (currentScreen === "instr") drawInstr();
   else if (currentScreen === "game") drawGame();
   else if (currentScreen === "win") drawWin();
   else if (currentScreen === "lose") drawLose();
-
-  // (Optional teaching note)
-  // This “if/else chain” is a very common early approach.
-  // Later in the course you might replace it with:
-  // - a switch statement, or
-  // - an object/map of screens
+  else if (currentScreen === "home") drawHome();
 }
 
 // ------------------------------
@@ -72,10 +68,12 @@ function mousePressed() {
   // game.js          → gameMousePressed()
   // win.js           → winMousePressed()
   // lose.js          → loseMousePressed()
-
+ // home.js          → homeMousePressed()
+ 
   if (currentScreen === "start") startMousePressed();
   else if (currentScreen === "instr") instrMousePressed();
   else if (currentScreen === "game") gameMousePressed();
+  else if (currentScreen === "home") homeMousePressed();
   // The ?.() means “call this function only if it exists”
   // This prevents errors if a screen doesn’t implement a handler.
   else if (currentScreen === "win") winMousePressed?.();
@@ -93,11 +91,13 @@ function keyPressed() {
   // game.js          → gameKeyPressed()
   // win.js           → winKeyPressed()
   // lose.js          → loseKeyPressed()
+  // home.js          → homeKeyPressed()
 
   if (currentScreen === "start") startKeyPressed();
   else if (currentScreen === "instr") instrKeyPressed();
   else if (currentScreen === "game") gameKeyPressed?.();
   else if (currentScreen === "win") winKeyPressed?.();
+  else if (currentScreen === "home") homeKeyPressed?.();
   else if (currentScreen === "lose") loseKeyPressed?.();
 }
 

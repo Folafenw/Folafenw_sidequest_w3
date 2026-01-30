@@ -24,9 +24,13 @@ function drawWin() {
   textSize(40);
   text("You Win!", width / 2, 260);
 
-  // Instruction text
-  textSize(40);
-  text("Click or press R to return to Start.", width / 2, 360);
+  
+textSize(22);
+  text("You leave the bird alone and enjoy a nice walk.", width / 2, 320);
+
+
+textSize(18);
+  text("Click or press R to return to the Start.", width / 2, 380);
 }
 
 // ------------------------------------------------------------
