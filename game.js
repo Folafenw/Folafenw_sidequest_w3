@@ -8,16 +8,23 @@
 // ------------------------------
 // Button data
 // ------------------------------
-// This object stores all the information needed to draw
-// and interact with the button on the game screen.
+
 // Keeping this in one object makes it easier to move,
 // resize, or restyle the button later.
-const gameBtn = {
-  x: 400, // x position (centre of the button)
-  y: 550, // y position (centre of the button)
+const chaseBtn = {
+  x: 260, // x position (centre of the button)
+  y: 560, // y position (centre of the button)
   w: 260, // width
   h: 90, // height
-  label: "PRESS HERE", // text shown on the button
+  label: "CHASE IT", // text shown on the button
+};
+
+const leaveBtn = {
+  x: 540, 
+  y: 560, 
+  w: 260, 
+  h: 90, 
+  label: "LEAVE IT ALONE",
 };
 
 // ------------------------------
@@ -31,25 +38,31 @@ function drawGame() {
 
   // ---- Title and instructions text ----
   fill(0); // black text
-  textSize(32);
+  textSize(36);
   textAlign(CENTER, CENTER);
-  text("Game Screen", width / 2, 160);
+  text("Forest", width / 2, 140);
 
   textSize(18);
   text(
-    "Click the button (or press ENTER) for a random result.",
+    "You see a bird. What do you do?",
     width / 2,
     210,
   );
 
-  // ---- Draw the button ----
-  // We pass the button object to a helper function
-  drawGameButton(gameBtn);
+
+// Scene hint (optional)
+  textSize(16);
+  text("Tip: choose wisely…", width / 2, 240);
+
+  // ---- Draw the buttons ----
+  // We pass the button objects to a helper function
+  drawChoiceButton(chaseBtn);
+  drawChoiceButton(leaveBtn);
 
   // ---- Cursor feedback ----
   // If the mouse is over the button, show a hand cursor
   // Otherwise, show the normal arrow cursor
-  cursor(isHover(gameBtn) ? HAND : ARROW);
+  cursor(isHover(chaseBtn) || isHover(leaveBtn) ? HAND : ARROW);
 }
 
 // ------------------------------
@@ -57,7 +70,7 @@ function drawGame() {
 // ------------------------------
 // This function is responsible *only* for drawing the button.
 // It does NOT handle clicks or game logic.
-function drawGameButton({ x, y, w, h, label }) {
+function drawChoiceButton({ x, y, w, h, label }) {
   rectMode(CENTER);
 
   // Check if the mouse is hovering over the button
@@ -79,7 +92,7 @@ function drawGameButton({ x, y, w, h, label }) {
 
   // Draw the button text
   fill(0);
-  textSize(28);
+  textSize(24);
   textAlign(CENTER, CENTER);
   text(label, x, y);
 }
@@ -91,8 +104,11 @@ function drawGameButton({ x, y, w, h, label }) {
 // only when currentScreen === "game"
 function gameMousePressed() {
   // Only trigger the outcome if the button is clicked
-  if (isHover(gameBtn)) {
-    triggerRandomOutcome();
+  if (isHover(chaseBtn)) {
+    currentScreen = "lose" // pecked to death
+  }
+  else if (isHover(leaveBtn)) {
+    currentScreen = "win"; // peaceful walk
   }
 }
 
@@ -100,29 +116,9 @@ function gameMousePressed() {
 // Keyboard input for this screen
 // ------------------------------
 // Allows keyboard-only interaction (accessibility + design)
-function gameKeyPressed() {
-  // ENTER key triggers the same behaviour as clicking the button
-  if (keyCode === ENTER) {
-    triggerRandomOutcome();
-  }
-}
 
-// ------------------------------
-// Game logic: win or lose
-// ------------------------------
-// This function decides what happens next in the game.
-// It does NOT draw anything.
-function triggerRandomOutcome() {
-  // random() returns a value between 0 and 1
-  // Here we use a 50/50 chance:
-  // - less than 0.5 → win
-  // - 0.5 or greater → lose
-  //
-  // You can bias this later, for example:
-  // random() < 0.7 → 70% chance to win
-  if (random() < 0.5) {
-    currentScreen = "win";
-  } else {
-    currentScreen = "lose";
-  }
+function gameKeyPressed() {
+  // Optional keyboard shortcuts:
+  if (key === "c" || key === "C") currentScreen = "lose"; // chase
+  if (key === "l" || key === "L") currentScreen = "win";  // leave
 }

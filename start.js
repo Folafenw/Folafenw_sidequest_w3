@@ -23,7 +23,7 @@ function drawStart() {
 
 // Prompt
   textSize(22);
-  text("Where do you go?", width / 2, 210);
+  text("Where do you go?", width / 2, 240);
 
   // ---- Buttons (data only) ----
   // These objects store the position/size/label for each button.
