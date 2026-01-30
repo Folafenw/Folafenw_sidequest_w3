@@ -18,36 +18,41 @@ function drawStart() {
   fill(30, 50, 60);
   textSize(46);
   textAlign(CENTER, CENTER);
-  text("Win or Lose", width / 2, 180);
+  text("You're on a Walk", width / 2, 180);
+
+
+// Prompt
+  textSize(22);
+  text("Where do you go?", width / 2, 210);
 
   // ---- Buttons (data only) ----
   // These objects store the position/size/label for each button.
   // Using objects makes it easy to pass them into drawButton()
   // and also reuse the same information for hover checks.
-  const startBtn = {
+  const forestBtn = {
     x: width / 2,
     y: 320,
     w: 240,
     h: 80,
-    label: "START",
+    label: "FOREST",
   };
 
-  const instrBtn = {
+  const homeBtn = {
     x: width / 2,
     y: 430,
     w: 240,
     h: 80,
-    label: "INSTRUCTIONS",
+    label: "HOME",
   };
 
   // Draw both buttons
-  drawButton(startBtn);
-  drawButton(instrBtn);
+  drawButton(forestBtn);
+  drawButton(homeBtn);
 
   // ---- Cursor feedback ----
   // If the mouse is over either button, show a hand cursor
   // so the player knows it is clickable.
-  const over = isHover(startBtn) || isHover(instrBtn);
+  const over = isHover(forestBtn) || isHover(homeBtn);
   cursor(over ? HAND : ARROW);
 }
 
@@ -57,16 +62,16 @@ function drawStart() {
 // Called from main.js only when currentScreen === "start"
 function startMousePressed() {
   // For input checks, we only need x,y,w,h (label is optional)
-  const startBtn = { x: width / 2, y: 320, w: 240, h: 80 };
-  const instrBtn = { x: width / 2, y: 430, w: 240, h: 80 };
+  const forestBtn = { x: width / 2, y: 320, w: 240, h: 80 };
+  const homeBtn = { x: width / 2, y: 430, w: 240, h: 80 };
 
-  // If START is clicked, go to the game screen
-  if (isHover(startBtn)) {
+  // If FOREST is clicked, go to the game screen
+  if (isHover(forestBtn)) {
     currentScreen = "game";
   }
-  // If INSTRUCTIONS is clicked, go to the instructions screen
-  else if (isHover(instrBtn)) {
-    currentScreen = "instr";
+  // If HOME is clicked, go to the home screen
+  else if (isHover(homeBtn)) {
+    currentScreen = "lose";
   }
 }
 
@@ -74,15 +79,15 @@ function startMousePressed() {
 // Keyboard input for the start screen
 // ------------------------------------------------------------
 // Provides keyboard shortcuts:
-// - ENTER starts the game
-// - I opens instructions
+// - ENTER defaults to forest
+// - h takes you home
 function startKeyPressed() {
   if (keyCode === ENTER) {
     currentScreen = "game";
   }
 
-  if (key === "i" || key === "I") {
-    currentScreen = "instr";
+  if (key === "h" || key === "H") {
+    currentScreen = "lose";
   }
 }
 
