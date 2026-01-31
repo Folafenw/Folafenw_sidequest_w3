@@ -1,30 +1,28 @@
 ## Project Title
 
-GBDA302 Week 3 Example 1: Instructions Screen with Back button
-
----
-
-## Authors
-
-Karen Cochrane and David Han
+Sidequest Week 3: Interactive Story
 
 ---
 
 ## Description
 
-This p5.js project demonstrates a simple multi-screen game structure using a state-based approach. The example includes a start screen, an instructions screen with a back button, a basic game screen, and win/lose outcome screens. The focus is on showing how to separate screens into different files, route input based on the current game state, and design simple UI elements such as buttons and keyboard controls.
+This game is a choose your own adeventure where every choice you make affects the game. You can click your descsion as welel as press a key to make a choice which leads to the next screen. You can win, lose or get a neutral "home" screen.
 
 ---
 
-## Learning Goals
+## Interaction Instructions
 
-- Understand how to manage multiple game states using a shared currentScreen variable
-- Practice separating code across multiple files for readability and maintenance
-- Implement clickable and keyboard-accessible UI buttons
-- Learn how to route draw(), mousePressed(), and keyPressed() logic based on the active screen
-- Build a basic instructions screen with a functional back button
+The user clicks their deisred choice using their mouse taking them to the next scene. The user can also click enter for the "left" decison and h for the "right". The user can press r at the "win", "lose", and "home" screen to go back to start.
 
 ---
+
+## Assets
+
+N/A
+
+## References
+
+## N/A
 
 ## Assets
 
